@@ -1,8 +1,11 @@
 import React from "react";
 import "./App.css";
+import RandomColor from "./RandomColor";
 
 const App = () => {
-  return <div>Hello, this is my second project out of a total of 25</div>;
+  return <div className="App">
+    <RandomColor />
+  </div>;
 };
 
 export default App;
