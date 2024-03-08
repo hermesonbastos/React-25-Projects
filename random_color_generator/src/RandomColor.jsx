@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 const RandomColor = () => {
   const [color, setColor] = useState("#000");
+  const [isHex, setIsHex] = useState(true);
+
+  console.log(isHex);
 
   const getRgb = () => Math.floor(Math.random() * 256); // gera um número inteiro aleatório entre 0 e 255
   const rgbToHex = (r, g, b) =>
@@ -23,7 +26,7 @@ const RandomColor = () => {
       g: getRgb(),
       b: getRgb(),
     };
-    setColor(rgbToHex(color.r, color.g, color.b));
+    isHex ? setColor(rgbToHex(color.r, color.g, color.b)) : setColor(`rgb(${color.r}, ${color.g}, ${color.b})`);
   };
 
   return (
@@ -31,6 +34,7 @@ const RandomColor = () => {
       <button style={{ color: `${color}` }} onClick={handleGenerate}>
         {color}
       </button>
+      <button onClick={() => setIsHex(!isHex)}>{isHex ? "Generate HEX" : "Generate RGB"}</button>
     </div>
   );
 };
