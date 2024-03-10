@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
 const StarRating = ({ numStars = 5 }) => {
-  const [currentRating, setCurrentRating] = useState(null);
+  const [currentRating, setCurrentRating] = useState(0);
   const [hover, setHover] = useState(null);
+
+  function handleClick(current) {
+    setCurrentRating(currentRating === current ? 0 : current);
+  }
 
   return (
     <div>
@@ -12,7 +16,7 @@ const StarRating = ({ numStars = 5 }) => {
         return (
           <FaStar
             size={50}
-            onClick={() => setCurrentRating(current)}
+            onClick={() => handleClick(current, index)}
             onMouseEnter={() => setHover(current)}
             onMouseLeave={() => setHover(null)}
             color={current <= currentRating || current <= hover ? "#fb1" : ""}
