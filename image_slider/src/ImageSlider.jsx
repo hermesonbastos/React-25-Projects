@@ -14,15 +14,23 @@ const ImageSlider = ({ imageUrls }) => {
 
   return (
     <div className="img-slider">
-      <img
-        src={imageUrls[imageIndex]}
-        alt="imagem de um carro"
-        className="img-slider-img"
-      />
-      <button onClick={() => handlePrevImage()} className="img-slide-btn" style={{ left: 0 }}>
+      <div className="img-slider-images">
+        {imageUrls.map((url) => {
+          return <img key={url} src={url} className="img-slider-img" style={{ translate: `${-100 * imageIndex}%` }} />;
+        })}
+      </div>
+      <button
+        onClick={() => handlePrevImage()}
+        className="img-slide-btn"
+        style={{ left: 0 }}
+      >
         <ArrowBigLeft />
       </button>
-      <button onClick={() => handleNextImage()} className="img-slide-btn" style={{ right: 0 }}>
+      <button
+        onClick={() => handleNextImage()}
+        className="img-slide-btn"
+        style={{ right: 0 }}
+      >
         <ArrowBigRight />
       </button>
     </div>
