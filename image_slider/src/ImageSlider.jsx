@@ -15,11 +15,12 @@ const ImageSlider = ({ imageUrls }) => {
   return (
     <div className="img-slider">
       <div className="img-slider-images">
-        {imageUrls.map((url) => {
+        {imageUrls.map(({ url, alt }) => {
           return (
             <img
               key={url}
               src={url}
+              alt={alt}
               className="img-slider-img"
               style={{ translate: `${-100 * imageIndex}%` }}
             />
@@ -30,6 +31,7 @@ const ImageSlider = ({ imageUrls }) => {
         onClick={() => handlePrevImage()}
         className="img-slider-btn"
         style={{ left: 0 }}
+        aria-label="Ver Imagem Anterior"
       >
         <ArrowBigLeft />
       </button>
@@ -37,13 +39,14 @@ const ImageSlider = ({ imageUrls }) => {
         onClick={() => handleNextImage()}
         className="img-slider-btn"
         style={{ right: 0 }}
+        aria-label="Ver Próxima Imagem"
       >
         <ArrowBigRight />
       </button>
       <div className="img-slider-buttons">
         {imageUrls.map((_, index) => {
           return (
-            <button className="img-slider-dot-btn" key={index} onClick={() => setImageIndex(index)}>
+            <button className="img-slider-dot-btn" key={index} onClick={() => setImageIndex(index)} aria-label={`Visualizando Imagem ${index + 1}`}>
               {index === imageIndex ? <CircleDot /> : <Circle />}
             </button>
           );
